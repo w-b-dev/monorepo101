@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 export interface Todo {
   title: string;
@@ -10,18 +11,20 @@ export interface Todo {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  todos: Todo[] = [
-    {
-      title: 'todo 1'
-    },
-    {
-      title: 'todo 2'
-    }
-  ];
 
-  addTodo() {
-    this.todos.push({
-      title: `Random ${Math.floor(Math.random() * 100)}`
-    });
+  todos: Todo[];
+
+  constructor(private httpClient: HttpClient) {
+    this.loadData();
+  }
+
+  loadData() {
+    this.httpClient.get('/api/todos')
+      .subscribe((r: any) => this.todos = r);
+  }
+
+  saveData() {
+    this.httpClient.post('/api/add-todo', {})
+      .subscribe(r => this.loadData());
   }
 }

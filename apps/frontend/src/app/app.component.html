@@ -1,7 +1,7 @@
+<button (click)="saveData()">Add Todo</button>
 <ul>
   <li *ngFor="let todo of todos">
-   {{todo.title}}
+    {{todo.title}}
   </li>
 </ul>
-<button (click)="addTodo()">Add Todo</button>
 <router-outlet></router-outlet>
