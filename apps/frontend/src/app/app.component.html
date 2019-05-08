@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let todo of todos">
+   {{todo.title}}
+  </li>
+</ul>
+<button (click)="addTodo()">Add Todo</button>
+<router-outlet></router-outlet>
